@@ -2,3 +2,75 @@
 # Add your pseudocode to this file below this line: #
 # ------------------------------------------------- #
 
+BEGIN
+
+    // Step 1: Define the warehouse layout
+    DEFINE warehouse AS 2D_ARRAY (rows, columns)
+    // Example: 10 rows and 10 columns
+    SET rows = 10
+    SET columns = 10
+
+    // Step 2: Initialize warehouse with items or locations
+    INITIALIZE warehouse WITH default locations/items
+    // Example: warehouse[2][3] = "Aisle 5, Section B" // This is where a specific item is located
+
+    // Step 3: Initialize player starting position
+    SET player_position = {x: 0, y: 0} // Starting at the top-left corner
+    SET destination_position = {x: 5, y: 7} // Example destination
+
+    // Step 4: Display instructions to the user
+    PRINT "Welcome to the Warehouse Mapping Application!"
+    PRINT "You can move north (N), south (S), east (E), or west (W)."
+    PRINT "To find your destination, use the commands to navigate."
+
+    // Step 5: Main loop for user movement
+    WHILE player_position != destination_position DO
+        
+        // Step 6: Display current position and destination
+        PRINT "You are currently at position (" + player_position.x + ", " + player_position.y + ")"
+        PRINT "Your destination is at position (" + destination_position.x + ", " + destination_position.y + ")"
+        
+        // Step 7: Get user input for movement
+        PRINT "Enter your move (N/S/E/W): "
+        INPUT user_move
+        
+        // Step 8: Update player position based on the input
+        IF user_move == "N" THEN
+            IF player_position.y > 0 THEN
+                DECREMENT player_position.y
+            ELSE
+                PRINT "You cannot move north; you are at the top edge."
+            ENDIF
+            
+        ELSE IF user_move == "S" THEN
+            IF player_position.y < rows - 1 THEN
+                INCREMENT player_position.y
+            ELSE
+                PRINT "You cannot move south; you are at the bottom edge."
+            ENDIF
+            
+        ELSE IF user_move == "E" THEN
+            IF player_position.x < columns - 1 THEN
+                INCREMENT player_position.x
+            ELSE
+                PRINT "You cannot move east; you are at the right edge."
+            ENDIF
+            
+        ELSE IF user_move == "W" THEN
+            IF player_position.x > 0 THEN
+                DECREMENT player_position.x
+            ELSE
+                PRINT "You cannot move west; you are at the left edge."
+            ENDIF
+            
+        ELSE
+            PRINT "Invalid move. Please enter N, S, E, or W."
+        ENDIF
+        
+    END WHILE
+
+    // Step 9: Arrived at destination
+    PRINT "Congratulations! You have reached your destination at position (" + destination_position.x + ", " + destination_position.y + ")"
+    PRINT "You can find the item/location: " + warehouse[destination_position.y][destination_position.x]
+
+END

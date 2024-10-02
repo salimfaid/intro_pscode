@@ -2,3 +2,42 @@
 # Add your pseudocode to this file below this line: #
 # ------------------------------------------------- #
 
+BEGIN
+
+    // Step 1: Initialize variables
+    SET secret_number = RANDOM_NUMBER(1, 10) // Computer chooses a random number between 1 and 10
+    SET attempts = 3 // Number of chances the player has
+    SET guessed_correctly = FALSE // Flag to track if the player guessed correctly
+
+    // Step 2: Start the game loop
+    WHILE attempts > 0 AND guessed_correctly = FALSE DO
+        
+        // Step 3: Prompt the player for a guess
+        PRINT "Guess a number between 1 and 10: "
+        INPUT player_guess
+        
+        // Step 4: Check if the guess is correct
+        IF player_guess == secret_number THEN
+            PRINT "Congratulations! You guessed the correct number."
+            SET guessed_correctly = TRUE // Update the flag
+        ELSE
+            // Step 5: Provide feedback on the guess
+            IF player_guess < secret_number THEN
+                PRINT "Your guess is too low."
+            ELSE
+                PRINT "Your guess is too high."
+            ENDIF
+            
+            // Step 6: Decrease the number of attempts
+            DECREMENT attempts
+            PRINT "You have " + attempts + " attempts left."
+        ENDIF
+
+    END WHILE
+
+    // Step 7: Check if the player ran out of attempts
+    IF guessed_correctly = FALSE THEN
+        PRINT "Sorry, you've run out of attempts. The correct number was " + secret_number + "."
+    ENDIF
+
+END

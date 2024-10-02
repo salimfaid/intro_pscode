@@ -2,3 +2,11 @@
 # Add your pseudocode to this file below this line: #
 # ------------------------------------------------- #
 
+# Program to count numbers from 2 to 50, counting by twos
+
+# Initialize starting number
+start = 2
+
+# Loop through numbers from 2 to 50, incrementing by 2
+for number in range(start, 51, 2):
+    print(number)
